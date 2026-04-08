@@ -670,19 +670,23 @@ function renderApp(useTransition = false) {
 
 function setupScrollReveal() {
   const targets = appRoot.querySelectorAll(
-    '.hero-copy, .importance-kpis, .section h2, .section p, .card, .flow-item, .timeline article, .member, .contact-form, .project-info, .meta-card'
+    '.main-content h1, .main-content h2, .main-content h3, .main-content p, .main-content li, .main-content .card, .main-content .flow-item, .main-content .timeline article, .main-content .member, .main-content .contact-form, .main-content .project-info, .main-content .meta-card'
   );
 
   if (!targets.length) {
     return;
   }
 
-  targets.forEach((el) => {
+  targets.forEach((el, index) => {
+    el.classList.remove('reveal-item', 'is-visible', 'reveal-rise');
     el.classList.add('reveal-item');
+    el.style.setProperty('--reveal-delay', `${Math.min(index * 22, 260)}ms`);
   });
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-    targets.forEach((el) => el.classList.add('is-visible'));
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach((el) => {
+      el.classList.add('reveal-rise', 'is-visible');
+    });
     return;
   }
 
@@ -693,13 +697,13 @@ function setupScrollReveal() {
           return;
         }
 
-        entry.target.classList.add('is-visible');
+        entry.target.classList.add('reveal-rise', 'is-visible');
         obs.unobserve(entry.target);
       });
     },
     {
-      threshold: 0.12,
-      rootMargin: '0px 0px -6% 0px'
+      threshold: 0.14,
+      rootMargin: '0px 0px -8% 0px'
     }
   );
 

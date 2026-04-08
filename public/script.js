@@ -1,4 +1,9 @@
 const appRoot = document.getElementById('app');
+const assetVersion = document.body?.dataset?.assetVersion || String(Date.now());
+
+function withAssetVersion(url) {
+  return `${url}?v=${encodeURIComponent(assetVersion)}`;
+}
 
 const teamMembers = [
   {
@@ -61,6 +66,35 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+function initialsFromName(name) {
+  const parts = String(name).trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) {
+    return 'NA';
+  }
+
+  if (parts.length === 1) {
+    return parts[0].slice(0, 2).toUpperCase();
+  }
+
+  return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+}
+
+function githubIcon() {
+  return `
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M8 .2a8 8 0 0 0-2.53 15.6c.4.07.55-.17.55-.38v-1.36c-2.25.49-2.72-.95-2.72-.95-.37-.92-.9-1.16-.9-1.16-.74-.5.06-.49.06-.49.82.06 1.25.84 1.25.84.73 1.24 1.91.88 2.38.67.07-.52.29-.88.52-1.09-1.8-.2-3.69-.9-3.69-4a3.1 3.1 0 0 1 .83-2.15 2.9 2.9 0 0 1 .08-2.12s.67-.22 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.3.75.33 1.5.08 2.12a3.1 3.1 0 0 1 .83 2.15c0 3.11-1.9 3.8-3.71 4 .3.25.56.74.56 1.5v2.23c0 .21.14.46.56.38A8 8 0 0 0 8 .2Z"/>
+    </svg>
+  `;
+}
+
+function linkedinIcon() {
+  return `
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M1.2 5.5h3V15h-3V5.5Zm1.5-4.8a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4ZM6 5.5h2.9v1.3h.04c.4-.75 1.4-1.55 2.9-1.55 3.1 0 3.7 2 3.7 4.7V15h-3v-4.2c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2V15H6V5.5Z"/>
+    </svg>
+  `;
+}
+
 function getCurrentRoute() {
   const path = normalizePath(window.location.pathname);
   return routes[path] ? path : '/';
@@ -77,7 +111,9 @@ function shell(content, activePath) {
     <header class="header-nav">
       <nav class="nav container">
         <a href="/" data-spa-link class="brand-link" aria-label="AlzaWare Home">
-          <div class="brand">AlzaWare</div>
+          <div class="brand">
+            <img src="${withAssetVersion('/assets/alzaware-logo.png')}" alt="AlzaWare logo" class="brand-logo" onerror="this.onerror=null;this.src='${withAssetVersion('/assets/alzaware-logo.svg')}';" />
+          </div>
         </a>
         <div class="nav-links">
           ${navLink('Home', '/', false, activePath)}
@@ -116,25 +152,53 @@ function hero(eyebrow, title, lead) {
 function renderHome() {
   document.title = 'AlzaWare | Smart Glasses for Alzheimer Support';
   return shell(`
-    ${hero(
-      'Suez Canal University | 2025 - 2026',
-      'Smart Glasses for Alzheimer Support',
-      'AlzaWare is an end-to-end assistive ecosystem combining Flutter mobile interfaces, cloud intelligence, and multimodal AI to provide memory support, medicine recognition, and role-based medical assistance.'
-    )}
+    <section class="hero hero-home">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Suez Canal University | 2025 - 2026</p>
+          <h1 class="home-title">
+            <span class="ai-sparkle" aria-hidden="true">
+              <span class="sparkle sparkle-main"></span>
+              <span class="sparkle sparkle-small"></span>
+            </span>
+            <span>AlzaWare</span>
+          </h1>
+          <p class="lead">Smart glasses for Alzheimer support. AlzaWare is an end-to-end assistive ecosystem combining Flutter mobile interfaces, cloud intelligence, and multimodal AI to provide memory support, medicine recognition, and role-based medical assistance.</p>
+        </div>
+        <div class="importance-kpis" aria-label="Alzheimer impact indicators">
+          <article class="kpi-card">
+            <span>People Living With Dementia Worldwide</span>
+            <strong>55M+</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Alzheimer's Share of Dementia Cases</span>
+            <strong>60-70%</strong>
+          </article>
+          <article class="kpi-card">
+            <span>New Dementia Cases Each Year</span>
+            <strong>~10M</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Projected Cases by 2050</span>
+            <strong>139M</strong>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <section class="section container">
-      <h2>System Overview</h2>
+      <h2>Problem</h2>
       <p>
-        The operational flow starts with image capture on the glasses, followed by cloud processing,
-        and ends with real-time visual feedback on a transparent OLED display. This design enables lightweight wearables
-        while offloading heavy AI workloads to scalable cloud infrastructure.
+        Alzheimer’s patients and elderly users often struggle with remembering people, identifying medicine,
+        and reacting quickly to daily situations. Traditional reminders are not always enough in real-time,
+        especially in dynamic environments outside home.
       </p>
       <div class="flow-grid">
-        <div class="flow-item">1. Camera captures image</div>
-        <div class="flow-item">2. Frame sent to cloud</div>
-        <div class="flow-item">3. AI processes image</div>
-        <div class="flow-item">4. Result returns to controller</div>
-        <div class="flow-item">5. Output shown on OLED lens</div>
+        <div class="flow-item">1. Memory loss in daily interactions</div>
+        <div class="flow-item">2. Difficulty identifying medications</div>
+        <div class="flow-item">3. Limited situational awareness</div>
+        <div class="flow-item">4. Need for instant assistance</div>
+        <div class="flow-item">5. Need for safer independent living</div>
       </div>
       <div class="cta-row">
         <a href="/book-demo" data-spa-link class="demo-cta">Book Demo</a>
@@ -144,7 +208,7 @@ function renderHome() {
 
     <section class="section section-alt">
       <div class="container">
-        <h2>Hardware Architecture</h2>
+        <h2>Solution</h2>
         <div class="cards">
           <article class="card">
             <h3>Main Controller</h3>
@@ -175,19 +239,19 @@ function renderHome() {
     </section>
 
     <section class="section container">
-      <h2>Mobile Application Progress</h2>
+      <h2>Impact</h2>
       <div class="timeline">
         <article>
-          <span>Phase 1</span>
-          <p>Home UI, emergency screens, events/calendar modules, medication tracking, upload screens, and server integration.</p>
+          <span>Daily Confidence</span>
+          <p>Users gain confidence through real-time identification of faces, objects, and medications in everyday life.</p>
         </article>
         <article>
-          <span>Phase 2</span>
-          <p>Sign-in, profile screens, full database integration, retrain model button, and role-based core flows.</p>
+          <span>Caregiver Support</span>
+          <p>Caregivers and doctors receive a practical tool for safer follow-up, better communication, and faster decisions.</p>
         </article>
         <article>
-          <span>Phase 3</span>
-          <p>Sign-up experience and complete AI chatbot integration for real-time interactive support.</p>
+          <span>Scalable Innovation</span>
+          <p>The architecture enables continuous AI updates and cloud scaling for future healthcare and smart safety scenarios.</p>
         </article>
       </div>
     </section>
@@ -195,75 +259,100 @@ function renderHome() {
 }
 
 function renderFeatures() {
-  document.title = 'Features | AI Modules';
+  document.title = 'Features | Operational Safety';
   return shell(`
     ${hero(
-      'AI Modules',
-      'AI Modules & Features',
-      'The project combines face recognition, object detection, medical chatbot reasoning, and retraining pipelines to keep the system adaptive and responsive.'
+      'Operational Safety',
+      'Operational Safety Features',
+      'AlzaWare combines real-time vision, role-based medical assistance, and cloud-backed intelligence to reduce risk, improve awareness, and support safer daily operation for Alzheimer patients.'
     )}
 
     <section class="section container">
       <div class="split">
         <article class="card">
-          <h3>Face Recognition</h3>
-          <p>Pipeline: <strong>MTCNN</strong> face detection, <strong>FaceNet</strong> embedding extraction (128-D), and <strong>SVM (RBF)</strong> classification.</p>
+          <h3>Identity Safety Layer</h3>
+          <p>Face recognition runs through <strong>MTCNN + FaceNet + SVM (RBF)</strong> to identify trusted people and reduce confusion in real-time interactions.</p>
           <ul>
             <li>Training Accuracy: 99.12%</li>
             <li>Validation Accuracy: 98.61%</li>
             <li>Testing Accuracy: 97.22%</li>
+            <li>Low-confidence faces are filtered to avoid unsafe decisions</li>
           </ul>
         </article>
         <article class="card">
-          <h3>Retraining Engine</h3>
+          <h3>Medicine Safety Detection</h3>
           <p>
-            New images uploaded from mobile are enhanced, augmented, embedded, and merged into existing feature banks.
-            The SVM model is then retrained and deployed dynamically.
+            A fine-tuned <strong>YOLOv8n</strong> model detects 12 medicine classes and daily objects, helping users avoid medication mistakes and improve situational awareness.
           </p>
           <ul>
-            <li>15-image mobile upload pipeline</li>
-            <li>8 augmented variants per source image</li>
-            <li>>85% accuracy for newly added users</li>
+            <li>Precision: 0.9849</li>
+            <li>Recall: 0.9702</li>
+            <li>mAP@50: 0.995</li>
+            <li>Works in real-time on Raspberry Pi hardware</li>
           </ul>
         </article>
       </div>
 
       <div class="split second-row">
         <article class="card">
-          <h3>Medical Chatbot & MRI Support</h3>
+          <h3>Clinical Support Chatbot</h3>
           <p>
-            Gemini powers role-based dialogue for Patient, Caregiver, and Doctor modes.
-            Doctor mode integrates MRI-stage assistance using <strong>ResNet50</strong> with 80% accuracy as a clinical support tool.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Medicine & Object Detection</h3>
-          <p>
-            <strong>YOLOv8n</strong> was fine-tuned on a 12-class medicine dataset and paired with a COCO object model
-            for daily environment awareness.
+            <strong>Gemini</strong> powers role-based guidance for Patient, Caregiver, and Doctor modes.
+            Doctor mode integrates MRI-stage analysis with <strong>ResNet50</strong> (80% accuracy) as a decision-support tool.
           </p>
           <ul>
-            <li>Precision: 0.9849</li>
-            <li>Recall: 0.9702</li>
-            <li>mAP@50: 0.995</li>
+            <li>Multimodal inputs: voice, text, and image</li>
+            <li>RAG context from medical database + memory store</li>
+            <li>Supports safer and faster medical communication</li>
           </ul>
         </article>
+        <article class="card">
+          <h3>Continuous Learning & Reliability</h3>
+          <p>
+            The system retrains safely when new faces are added: preprocessing, augmentation, embedding merge,
+            then model refresh without service downtime.
+          </p>
+          <ul>
+            <li>15 mobile images trigger retraining workflow</li>
+            <li>8 augmented samples generated per uploaded image</li>
+            <li>>85% accuracy for newly added users</li>
+            <li>Hot model reload from AWS S3 to active inference service</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <h2>Safety Operation Flow</h2>
+        <div class="flow-grid">
+          <div class="flow-item">1. Capture scene with camera</div>
+          <div class="flow-item">2. Route to face/object mode</div>
+          <div class="flow-item">3. Run AI inference pipeline</div>
+          <div class="flow-item">4. Validate confidence & context</div>
+          <div class="flow-item">5. Display safe guidance on OLED</div>
+        </div>
       </div>
     </section>
   `, '/features');
 }
 
 function renderArchitecture() {
-  document.title = 'Architecture | Cloud Infrastructure';
+  document.title = 'Architecture | Layered Safety Architecture';
   return shell(`
     ${hero(
       'System Architecture',
-      'Cloud Infrastructure & Backend',
+      'Layered Safety Architecture',
       'The system combines a Flutter mobile app, Flask backend services, and AWS cloud infrastructure to keep the wearable experience lightweight while the heavy work happens remotely.'
     )}
 
     <section class="section container">
-      <h2>Applied Technology Stack</h2>
+      <div class="tech-badges">
+        <div class="tech-badge flutter"><img src="/assets/flutter-logo.svg" alt="Flutter" /><strong>Flutter</strong></div>
+        <div class="tech-badge flask"><img src="/assets/flask-logo.svg" alt="Flask" /><strong>Flask</strong></div>
+        <div class="tech-badge aws"><img src="/assets/aws-logo.svg" alt="AWS" /><strong>AWS</strong></div>
+      </div>
+      <h2>Architecture Layers</h2>
       <div class="cards three-col">
         <article class="card">
           <h3>Flutter Mobile Layer</h3>
@@ -282,38 +371,51 @@ function renderArchitecture() {
 
     <section class="section section-alt">
       <div class="container">
-        <h2>AWS Stack Overview</h2>
+        <h2>Layered Safety Architecture</h2>
         <div class="cards three-col">
           <article class="card">
-            <h3>AWS Stack</h3>
-            <p>EC2 microservices, S3 model storage, and RDS (MS SQL) for structured healthcare records.</p>
+            <h3>Layer 1: Edge Perception</h3>
+            <p>Raspberry Pi + camera capture real-time visual context and send only the required data stream for processing.</p>
           </article>
           <article class="card">
-            <h3>Workflow Orchestration</h3>
-            <p>Dedicated paths for vision inference, multimodal voice chat (RAG + Gemini), retraining, and IAM.</p>
+            <h3>Layer 2: AI Inference</h3>
+            <p>Face recognition and medicine/object detection execute in controlled modes to maintain low latency and stable response.</p>
           </article>
           <article class="card">
-            <h3>Security Model</h3>
-            <p>JWT stateless auth, role-based access control, blacklist revocation, password signature checks, and rate limiting.</p>
+            <h3>Layer 3: Safety Intelligence</h3>
+            <p>Role-based chatbot and clinical support logic enrich raw detections into safe, understandable guidance.</p>
           </article>
           <article class="card">
-            <h3>Backend Design</h3>
-            <p>Layered architecture with routes, controllers, ORM models, AI services, and centralized utilities.</p>
+            <h3>Layer 4: Secure Backend</h3>
+            <p>Flask APIs with JWT validation, rate limiting, and standardized error handling enforce reliable operations.</p>
           </article>
           <article class="card">
-            <h3>Error Handling</h3>
-            <p>Standardized JSON responses, custom exceptions, and transaction rollbacks for data consistency.</p>
+            <h3>Layer 5: Cloud Reliability</h3>
+            <p>AWS EC2, S3, and RDS ensure model availability, scalable processing, and persistent medical data integrity.</p>
           </article>
           <article class="card">
-            <h3>Deployment Readiness</h3>
-            <p>Environment-based configuration, protected secrets, WSGI deployment behind reverse proxy, and scalable services.</p>
+            <h3>Layer 6: Continuous Learning</h3>
+            <p>Retraining pipelines ingest new faces from mobile uploads and hot-update active models without downtime.</p>
           </article>
         </div>
       </div>
     </section>
 
     <section class="section container">
-      <h2>Core Workflows</h2>
+      <h2>Flow Visualization</h2>
+      <div class="architecture-flow card">
+        <div class="flow-node">Edge Capture</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">AI Inference</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">Safety Logic</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">Flask API</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">AWS Cloud</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">OLED Output</div>
+      </div>
       <div class="split">
         <article class="card">
           <h3>Computer Vision Processing</h3>
@@ -342,11 +444,16 @@ function renderTeam() {
   document.title = 'Team | AlzaWare';
   const membersHtml = teamMembers.map((member) => `
     <article class="member">
-      <h3>${escapeHtml(member.name)}</h3>
-      <p class="member-specialty">${escapeHtml(member.specialty)}</p>
+      <div class="member-head">
+        <div class="member-avatar">${escapeHtml(initialsFromName(member.name))}</div>
+        <div class="member-meta">
+          <h3>${escapeHtml(member.name)}</h3>
+          <p class="member-specialty">${escapeHtml(member.specialty)}</p>
+        </div>
+      </div>
       <div class="member-links">
-        <a href="${member.github}" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="${member.linkedin}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="${member.github}" target="_blank" rel="noopener noreferrer">${githubIcon()}<span>GitHub</span></a>
+        <a href="${member.linkedin}" target="_blank" rel="noopener noreferrer">${linkedinIcon()}<span>LinkedIn</span></a>
       </div>
     </article>
   `).join('');
@@ -378,7 +485,7 @@ function renderTeam() {
           </div>
           <div class="meta-card">
             <span>Department</span>
-            <strong>Faculty of Computers and Informatics</strong>
+            <strong>Computer and Control</strong>
           </div>
         </div>
       </div>
@@ -420,11 +527,11 @@ function renderContact() {
           </div>
           <div class="info-item">
             <span>Category</span>
-            <strong>AI + IoT + Real-time Monitoring</strong>
+            <strong>AI + Real-time Monitoring</strong>
           </div>
           <div class="info-item">
             <span>Origin</span>
-            <strong>Graduation Project at Faculty of Computers and Informatics, Suez Canal University</strong>
+            <strong>Graduation Project at Faculty of Engineering, Suez Canal University</strong>
           </div>
           <h3 class="links-title">Additional Links</h3>
           <div class="quick-links">
@@ -534,11 +641,71 @@ function renderBookDemo() {
   `, '/book-demo');
 }
 
-function renderApp() {
+function renderApp(useTransition = false) {
   const activeRoute = getCurrentRoute();
   const render = routes[activeRoute] || routes['/'];
-  appRoot.innerHTML = render();
-  document.body.dataset.route = activeRoute;
+
+  const paintRoute = () => {
+    appRoot.innerHTML = render();
+    document.body.dataset.route = activeRoute;
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    setupScrollReveal();
+  };
+
+  if (!useTransition) {
+    paintRoute();
+    return;
+  }
+
+  appRoot.classList.add('page-leave');
+  requestAnimationFrame(() => {
+    paintRoute();
+    appRoot.classList.remove('page-leave');
+    appRoot.classList.add('page-enter');
+    requestAnimationFrame(() => {
+      appRoot.classList.remove('page-enter');
+    });
+  });
+}
+
+function setupScrollReveal() {
+  const targets = appRoot.querySelectorAll(
+    '.hero-copy, .importance-kpis, .section h2, .section p, .card, .flow-item, .timeline article, .member, .contact-form, .project-info, .meta-card'
+  );
+
+  if (!targets.length) {
+    return;
+  }
+
+  targets.forEach((el) => {
+    el.classList.add('reveal-item');
+  });
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    targets.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: '0px 0px -6% 0px'
+    }
+  );
+
+  targets.forEach((el) => {
+    observer.observe(el);
+  });
 }
 
 function handleNavigation(event) {
@@ -556,8 +723,7 @@ function handleNavigation(event) {
 
   if (nextPath !== getCurrentRoute()) {
     window.history.pushState({}, '', nextPath);
-    renderApp();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    renderApp(true);
   }
 }
 
@@ -614,6 +780,6 @@ async function handleFormSubmit(event) {
 
 document.addEventListener('click', handleNavigation);
 document.addEventListener('submit', handleFormSubmit);
-window.addEventListener('popstate', renderApp);
+window.addEventListener('popstate', () => renderApp(true));
 
 renderApp();

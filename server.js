@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const compression = require('compression');
 const errorMiddleware = require('./middleware/errorMiddleware');
@@ -7,6 +8,30 @@ require('dotenv').config();
 const pageController = require('./controllers/pageController');
 const app = express();
 let PORT = process.env.PORT || 3000;
+
+const getAssetVersion = () => {
+  const files = [
+    'public/script.js',
+    'public/styles.css',
+    'public/assets/alzaware-logo.png',
+    'public/assets/alzaware-logo.svg',
+    'public/assets/flutter-logo.svg',
+    'public/assets/flask-logo.svg',
+    'public/assets/aws-logo.svg'
+  ];
+
+  const latestMtime = files.reduce((max, relPath) => {
+    const absPath = path.join(__dirname, relPath);
+    if (!fs.existsSync(absPath)) {
+      return max;
+    }
+
+    const mtime = fs.statSync(absPath).mtimeMs;
+    return Math.max(max, mtime);
+  }, 0);
+
+  return String(Math.floor(latestMtime || Date.now()));
+};
 
 // View engine
 app.set('view engine', 'pug');
@@ -18,7 +43,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Static files for the client-side rendered app
-app.use(express.static(path.join(__dirname, 'public'), { index: false }));
+app.use(express.static(path.join(__dirname, 'public'), {
+  index: false,
+  etag: true,
+  maxAge: '7d'
+}));
 
 // API endpoint used by the client-side forms
 app.post('/api/contact', pageController.contactSubmit);
@@ -29,8 +58,14 @@ app.get('*', (req, res, next) => {
     return next(new ErrorHandler('API route not found', 404));
   }
 
+  // Always revalidate HTML so the latest asset version is injected.
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+
   res.render('index', {
-    title: 'AlzaWare | Graduation Project'
+    title: 'AlzaWare | Graduation Project',
+    assetVersion: getAssetVersion()
   });
 });
 

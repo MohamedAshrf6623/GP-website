@@ -1,0 +1,58 @@
+<%- include('../partials/header') %>
+
+<section class="hero">
+  <div class="container">
+    <h1>AI Modules & Features</h1>
+    <p class="lead">Advanced machine learning pipelines for face recognition, medicine detection, and intelligent assistance.</p>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="split">
+    <article>
+      <h3>Face Recognition</h3>
+      <p>Pipeline: <strong>MTCNN</strong> face detection, <strong>FaceNet</strong> embedding extraction (128-D), and <strong>SVM (RBF)</strong> classification.</p>
+      <ul>
+        <li>Training Accuracy: 99.12%</li>
+        <li>Validation Accuracy: 98.61%</li>
+        <li>Testing Accuracy: 97.22%</li>
+      </ul>
+    </article>
+    <article>
+      <h3>Retraining Engine</h3>
+      <p>
+        New images uploaded from mobile are enhanced, augmented, embedded, and merged into existing feature banks.
+        The SVM model is then retrained and deployed dynamically.
+      </p>
+      <ul>
+        <li>15-image mobile upload pipeline</li>
+        <li>8 augmented variants per source image</li>
+        <li>>85% accuracy for newly added users</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="split second-row">
+    <article>
+      <h3>Medical Chatbot & MRI Support</h3>
+      <p>
+        Gemini powers role-based dialogue for Patient, Caregiver, and Doctor modes.
+        Doctor mode integrates MRI-stage assistance using <strong>ResNet50</strong> with 80% accuracy as a clinical support tool.
+      </p>
+    </article>
+    <article>
+      <h3>Medicine & Object Detection</h3>
+      <p>
+        <strong>YOLOv8n</strong> was fine-tuned on a 12-class medicine dataset and paired with a COCO object model
+        for daily environment awareness.
+      </p>
+      <ul>
+        <li>Precision: 0.9849</li>
+        <li>Recall: 0.9702</li>
+        <li>mAP@50: 0.995</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

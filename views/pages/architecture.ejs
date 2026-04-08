@@ -1,0 +1,84 @@
+<%- include('../partials/header') %>
+
+<section class="hero">
+  <div class="container">
+    <h1>Cloud Infrastructure & Backend</h1>
+    <p class="lead">Production architecture powered by a Flutter mobile app, Flask backend services, and AWS cloud infrastructure for secure, real-time healthcare AI workflows.</p>
+  </div>
+</section>
+
+<section class="section container">
+  <h2>Applied Technology Stack</h2>
+  <div class="cards three-col">
+    <article class="card">
+      <h3>Flutter Mobile Layer</h3>
+      <p>The companion app is built with Flutter to deliver cross-platform role-based flows for Patient, Caregiver, and Doctor users.</p>
+    </article>
+    <article class="card">
+      <h3>Flask Backend Services</h3>
+      <p>Core APIs are implemented with Flask for authentication, profile management, AI endpoint routing, and secure token-based access.</p>
+    </article>
+    <article class="card">
+      <h3>AWS Cloud Layer</h3>
+      <p>AWS powers compute, storage, and database services using EC2, S3, and RDS to handle heavy processing reliably at scale.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section container">
+  <h2>AWS Stack Overview</h2>
+  <div class="cards three-col">
+    <article class="card">
+      <h3>AWS Stack</h3>
+      <p>EC2 microservices, S3 model storage, and RDS (MS SQL) for structured healthcare records.</p>
+    </article>
+    <article class="card">
+      <h3>Workflow Orchestration</h3>
+      <p>Dedicated paths for vision inference, multimodal voice chat (RAG + Gemini), retraining, and IAM.</p>
+    </article>
+    <article class="card">
+      <h3>Security Model</h3>
+      <p>JWT stateless auth, role-based access control, blacklist revocation, pwd signature checks, and rate limiting.</p>
+    </article>
+    <article class="card">
+      <h3>Backend Design</h3>
+      <p>Layered architecture with routes, controllers, ORM models, AI services, and centralized utilities.</p>
+    </article>
+    <article class="card">
+      <h3>Error Handling</h3>
+      <p>Standardized JSON responses, custom exceptions, and transaction rollbacks for data consistency.</p>
+    </article>
+    <article class="card">
+      <h3>Deployment Readiness</h3>
+      <p>Environment-based configuration, protected secrets, WSGI deployment behind reverse proxy, and scalable services.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2>Core Workflows</h2>
+    <div class="split">
+      <article>
+        <h3>Computer Vision Processing</h3>
+        <p>Real-time image processing from AR glasses: face recognition via SVM, object detection via YOLOv8, with immediate OLED output.</p>
+      </article>
+      <article>
+        <h3>Voice Chat & Diagnosis</h3>
+        <p>Multimodal RAG system with Gemini: patient questions, STT/TTS, database context, and ResNet50 MRI analysis for doctors.</p>
+      </article>
+    </div>
+    <div class="split second-row">
+      <article>
+        <h3>Machine Learning Retraining</h3>
+        <p>Caregiver uploads images → S3 → Training EC2 → Updated SVM model → Hot reload on Main API.</p>
+      </article>
+      <article>
+        <h3>Identity & Access Management</h3>
+        <p>JWT-based stateless auth with token blacklist, password signature validation, and role-based access control.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

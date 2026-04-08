@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+
+<section class="hero">
+  <div class="container">
+    <h1><%= pageTitle %></h1>
+    <p class="lead">12 talented developers from Suez Canal University contributing to this innovative healthcare AI project.</p>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="team-grid">
+    <% members.forEach(member => { %>
+      <article class="member">
+        <h3><%= member.name %></h3>
+        <p class="member-specialty"><%= member.specialty %></p>
+        <div class="member-links">
+          <a href="<%= member.github %>" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="<%= member.linkedin %>" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </article>
+    <% }); %>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2>Project Supervision</h2>
+    <div class="meta-grid">
+      <div class="meta-card">
+        <span>Faculty Advisor</span>
+        <strong>Dr. Iman Mostafa</strong>
+      </div>
+      <div class="meta-card">
+        <span>University</span>
+        <strong>Suez Canal University</strong>
+      </div>
+      <div class="meta-card">
+        <span>Department</span>
+        <strong>Faculty of Computers and Informatics</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

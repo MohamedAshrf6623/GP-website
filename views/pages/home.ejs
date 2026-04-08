@@ -1,0 +1,94 @@
+<%- include('../partials/header') %>
+
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Suez Canal University | 2025 - 2026</p>
+    <h1>Smart Glasses for Alzheimer Support</h1>
+    <p class="lead">
+      AlzaWare is an end-to-end assistive ecosystem combining AR glasses, cloud intelligence,
+      and multimodal AI to provide memory support, medicine recognition, and role-based medical assistance.
+    </p>
+    <div class="meta-grid">
+      <div class="meta-card">
+        <span>Supervisor</span>
+        <strong>Dr. Iman Mostafa</strong>
+      </div>
+      <div class="meta-card">
+        <span>University</span>
+        <strong>Suez Canal University</strong>
+      </div>
+      <div class="meta-card">
+        <span>Project Type</span>
+        <strong>Graduation Project</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <h2>System Overview</h2>
+  <p>
+    The operational flow starts with image capture on the glasses, followed by cloud processing,
+    and ends with real-time visual feedback on a transparent OLED display. This design enables lightweight wearables
+    while offloading heavy AI workloads to scalable cloud infrastructure.
+  </p>
+  <div class="flow-grid">
+    <div class="flow-item">1. Camera captures image</div>
+    <div class="flow-item">2. Frame sent to cloud</div>
+    <div class="flow-item">3. AI processes image</div>
+    <div class="flow-item">4. Result returns to controller</div>
+    <div class="flow-item">5. Output shown on OLED lens</div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2>Hardware Architecture</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>Main Controller</h3>
+        <p><strong>Raspberry Pi Zero 2 W</strong> with quad-core CPU, built-in Wi-Fi, and CSI support for compact edge processing.</p>
+      </article>
+      <article class="card">
+        <h3>Camera Module</h3>
+        <p><strong>ZeroCam NOIR</strong> selected for minimal size, direct CSI compatibility, and low-light performance.</p>
+      </article>
+      <article class="card">
+        <h3>Display Module</h3>
+        <p><strong>1.51-inch Transparent OLED (128x64)</strong> using SPI/I2C for AR-style real-world overlay output.</p>
+      </article>
+      <article class="card">
+        <h3>Storage</h3>
+        <p><strong>64GB microSD</strong> for OS, codebase, logs, and temporary image buffering.</p>
+      </article>
+      <article class="card">
+        <h3>Power System</h3>
+        <p><strong>Type-C 5V/2A Power Bank Module</strong> replacing TP4056 + MT3608 with cleaner all-in-one charging/boosting.</p>
+      </article>
+      <article class="card">
+        <h3>Integration Result</h3>
+        <p>End-to-end testing validated camera streaming, cloud inference, and live output rendering on transparent OLED.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <h2>Mobile Application Progress</h2>
+  <div class="timeline">
+    <article>
+      <span>Phase 1</span>
+      <p>Home UI, emergency screens, events/calendar modules, medication tracking, upload screens, and server integration.</p>
+    </article>
+    <article>
+      <span>Phase 2</span>
+      <p>Sign-in, profile screens, full database integration, retrain model button, and role-based core flows.</p>
+    </article>
+    <article>
+      <span>Phase 3</span>
+      <p>Sign-up experience and complete AI chatbot integration for real-time interactive support.</p>
+    </article>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

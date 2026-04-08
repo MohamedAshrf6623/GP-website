@@ -1,2 +1,8 @@
 node_modules/
+.next/
+.next-cache/
+.out/
+out/
+.vercel/
 .env
+.env.local

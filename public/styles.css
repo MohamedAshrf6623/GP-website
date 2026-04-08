@@ -81,6 +81,7 @@ body {
 
 .mobile-menu-button {
   display: none;
+  position: relative;
   align-items: center;
   justify-content: center;
   width: 46px;

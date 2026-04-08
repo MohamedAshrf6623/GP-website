@@ -112,7 +112,7 @@ function shell(content, activePath) {
       <nav class="nav container">
         <a href="/" data-spa-link class="brand-link" aria-label="AlzaWare Home">
           <div class="brand">
-            <img src="${withAssetVersion('/assets/alzaware-logo.png')}" alt="AlzaWare logo" class="brand-logo" onerror="this.onerror=null;this.src='${withAssetVersion('/assets/alzaware-logo.svg')}';" />
+            <img src="${withAssetVersion('/assets/alzaware-head.png')}" alt="AlzaWare logo" class="brand-logo" />
           </div>
         </a>
         <div class="nav-links">
@@ -259,7 +259,7 @@ function renderHome() {
 }
 
 function renderFeatures() {
-  document.title = 'Features | Operational Safety';
+  document.title = 'AlzaWare | Features';
   return shell(`
     ${hero(
       'Operational Safety',
@@ -338,7 +338,7 @@ function renderFeatures() {
 }
 
 function renderArchitecture() {
-  document.title = 'Architecture | Layered Safety Architecture';
+  document.title = 'AlzaWare | Architecture';
   return shell(`
     ${hero(
       'System Architecture',
@@ -441,7 +441,7 @@ function renderArchitecture() {
 }
 
 function renderTeam() {
-  document.title = 'Team | AlzaWare';
+  document.title = 'AlzaWare | Team';
   const membersHtml = teamMembers.map((member) => `
     <article class="member">
       <div class="member-head">
@@ -494,7 +494,7 @@ function renderTeam() {
 }
 
 function renderContact() {
-  document.title = 'Contact | AlzaWare';
+  document.title = 'AlzaWare | Contact';
   return shell(`
     ${hero(
       'Contact',
@@ -548,7 +548,7 @@ function renderContact() {
 }
 
 function renderBookDemo() {
-  document.title = 'Book Demo | AlzaWare';
+  document.title = 'AlzaWare | Book Demo';
   const packagesHtml = demoPackages.map((item) => `
     <article class="card booking-package">
       <h3>${escapeHtml(item.title)}</h3>

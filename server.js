@@ -14,7 +14,7 @@ const getAssetVersion = () => {
     'public/script.js',
     'public/styles.css',
     'public/assets/alzaware-logo.png',
-    'public/assets/alzaware-logo.svg',
+    'public/assets/alzaware-head.png',
     'public/assets/flutter-logo.svg',
     'public/assets/flask-logo.svg',
     'public/assets/aws-logo.svg'
@@ -64,7 +64,7 @@ app.get('*', (req, res, next) => {
   res.set('Expires', '0');
 
   res.render('index', {
-    title: 'AlzaWare | Graduation Project',
+    title: 'AlzaWare | Smart Glasses for Alzheimer Support',
     assetVersion: getAssetVersion()
   });
 });

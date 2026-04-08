@@ -7,7 +7,7 @@ const ErrorHandler = require('./utils/errorHandler');
 require('dotenv').config();
 const pageController = require('./controllers/pageController');
 const app = express();
-let PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 const getAssetVersion = () => {
   const files = [
@@ -85,33 +85,14 @@ process.on('unhandledRejection', (reason, promise) => {
   console.error('⚠️ Unhandled Rejection:', reason);
 });
 
-// Start server with port fallback
+// Start server
 const server = app.listen(PORT, () => {
-  console.log(`✅ AlzaWare website running on http://localhost:${PORT}`);
+  console.log('✅ AlzaWare server started successfully');
 });
 
-// Handle port already in use error
 server.on('error', (error) => {
-  if (error.code === 'EADDRINUSE') {
-    console.error(`⚠️ Port ${PORT} is already in use`);
-    console.log(`Killing existing process on port ${PORT}...`);
-
-    // Try a different port
-    PORT = parseInt(PORT) + 1;
-    console.log(`Trying port ${PORT}...`);
-    
-    const retryServer = app.listen(PORT, () => {
-      console.log(`✅ AlzaWare website running on http://localhost:${PORT}`);
-    });
-
-    retryServer.on('error', (retryError) => {
-      console.error('❌ Failed to start server:', retryError.message);
-      process.exit(1);
-    });
-  } else {
-    console.error('❌ Server error:', error.message);
-    process.exit(1);
-  }
+  console.error('❌ Server failed to start:', error.message);
+  process.exit(1);
 });
 
 // Graceful shutdown

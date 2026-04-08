@@ -28,73 +28,73 @@ exports.architecture = asyncHandler(async (req, res) => {
 exports.team = asyncHandler(async (req, res) => {
   const teamMembers = [
     {
-      name: 'Mohamed Ashraf Nashat',
+      name: 'Mohamed Ashraf',
       specialty: 'Backend',
       github: 'https://github.com/MohamedAshrf6623',
       linkedin: 'https://www.linkedin.com/in/mohamed-ashraf-9b770727a/'
     },
     {
-      name: 'Aya Wael Mohamed',
+      name: 'Aya Wael',
       specialty: 'AI',
       github: '#',
       linkedin: '#'
     },
     {
-      name: 'Sarah Abdo Awad',
+      name: 'Sarah Abdo',
       specialty: 'AI',
       github: '#',
       linkedin: '#'
     },
     {
-      name: 'Nada Amr Farouk',
+      name: 'Nada Amr',
       specialty: 'Flutter',
       github: '#',
       linkedin: '#'
     },
     {
-      name: 'Mena Abdel Meguid Mostafa',
+      name: 'Mena Abdel',
       specialty: 'Flutter',
       github: '#',
       linkedin: '#'
     },
     {
-      name: 'Yehia Hamdy Sayed Ahmed Mohamed',
+      name: 'Yehia Hamdy',
       specialty: 'Hardware',
       github: '#',
       linkedin: '#'
     },
     {
-      name: 'Mohamed Fattouh Abdel Hamid',
+      name: 'Mohamed Fattouh',
       specialty: 'Cloud',
       github: '#',
       linkedin: '#'
     },
     {
-      name: 'Toqa Mohamed Farouk',
+      name: 'Toqa Mohamed',
       specialty: 'Backend',
       github: '#',
       linkedin: '#'
     },
     {
-      name: 'Mariam Ali Ali',
+      name: 'Mariam Ali',
       specialty: 'AI',
       github: '#',
       linkedin: '#'
     },
     {
-      name: 'Somaya Khaled Mohamed',
+      name: 'Somaya Khaled',
       specialty: 'AI',
       github: '#',
       linkedin: '#'
     },
     {
-      name: 'Yomna Mahmoud El Sayed Abdel Khalek',
+      name: 'Yomna Mahmoud',
       specialty: 'Database',
       github: '#',
       linkedin: '#'
     },
     {
-      name: 'Abdelrahman Mohamed Wasfy',
+      name: 'Abdelrahman Mohamed',
       specialty: 'Flutter',
       github: '#',
       linkedin: '#'

@@ -7,22 +7,22 @@ function withAssetVersion(url) {
 
 const teamMembers = [
   {
-    name: 'Mohamed Ashraf Nashat',
+    name: 'Mohamed Ashraf',
     specialty: 'Backend',
     github: 'https://github.com/MohamedAshrf6623',
     linkedin: 'https://www.linkedin.com/in/mohamed-ashraf-9b770727a/'
   },
-  { name: 'Aya Wael Mohamed', specialty: 'AI', github: '#', linkedin: '#' },
-  { name: 'Sarah Abdo Awad', specialty: 'AI', github: '#', linkedin: '#' },
-  { name: 'Nada Amr Farouk', specialty: 'Flutter', github: '#', linkedin: '#' },
-  { name: 'Mena Abdel Meguid Mostafa', specialty: 'Flutter', github: '#', linkedin: '#' },
-  { name: 'Yehia Hamdy Sayed Ahmed Mohamed', specialty: 'Hardware', github: '#', linkedin: '#' },
-  { name: 'Mohamed Fattouh Abdel Hamid', specialty: 'Cloud', github: '#', linkedin: '#' },
-  { name: 'Toqa Mohamed Farouk', specialty: 'Backend', github: '#', linkedin: '#' },
-  { name: 'Mariam Ali Ali', specialty: 'AI', github: '#', linkedin: '#' },
-  { name: 'Somaya Khaled Mohamed', specialty: 'AI', github: '#', linkedin: '#' },
-  { name: 'Yomna Mahmoud El Sayed Abdel Khalek', specialty: 'Database', github: '#', linkedin: '#' },
-  { name: 'Abdelrahman Mohamed Wasfy', specialty: 'Flutter', github: '#', linkedin: '#' }
+  { name: 'Aya Wael', specialty: 'AI', github: '#', linkedin: '#' },
+  { name: 'Sarah Abdo', specialty: 'AI', github: '#', linkedin: '#' },
+  { name: 'Nada Amr', specialty: 'Flutter', github: '#', linkedin: '#' },
+  { name: 'Mena Abdel', specialty: 'Flutter', github: '#', linkedin: '#' },
+  { name: 'Yehia Hamdy', specialty: 'Hardware', github: '#', linkedin: '#' },
+  { name: 'Mohamed Fattouh', specialty: 'Cloud', github: '#', linkedin: '#' },
+  { name: 'Toqa Mohamed', specialty: 'Backend', github: '#', linkedin: '#' },
+  { name: 'Mariam Ali', specialty: 'AI', github: '#', linkedin: '#' },
+  { name: 'Somaya Khaled', specialty: 'AI', github: '#', linkedin: '#' },
+  { name: 'Yomna Mahmoud', specialty: 'Database', github: '#', linkedin: '#' },
+  { name: 'Abdelrahman Mohamed', specialty: 'Flutter', github: '#', linkedin: '#' }
 ];
 
 const demoPackages = [

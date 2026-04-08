@@ -23,6 +23,7 @@ export default function SiteHeader({ assetVersion = 'dev' }) {
 
   return (
     <header className="header-nav">
+      {menuOpen ? <button type="button" className="mobile-backdrop" aria-label="Close menu" onClick={() => setMenuOpen(false)} /> : null}
       <nav className="nav container">
         <Link href="/" className="brand-link" aria-label="AlzaWare Home">
           <div className="brand">
@@ -33,19 +34,6 @@ export default function SiteHeader({ assetVersion = 'dev' }) {
             />
           </div>
         </Link>
-
-        <button
-          type="button"
-          className="mobile-menu-button"
-          aria-label="Open navigation menu"
-          aria-expanded={menuOpen}
-          aria-controls="site-mobile-menu"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
 
         <div className="nav-links">
           {navItems.map((item) => {
@@ -63,6 +51,19 @@ export default function SiteHeader({ assetVersion = 'dev' }) {
             );
           })}
         </div>
+
+        <button
+          type="button"
+          className={`mobile-menu-button ${menuOpen ? 'open' : ''}`.trim()}
+          aria-label="Open navigation menu"
+          aria-expanded={menuOpen}
+          aria-controls="site-mobile-menu"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
         <div
           id="site-mobile-menu"

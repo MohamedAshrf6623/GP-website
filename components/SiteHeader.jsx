@@ -28,7 +28,7 @@ export default function SiteHeader({ assetVersion = 'dev' }) {
         <Link href="/" className="brand-link" aria-label="AlzaWare Home">
           <div className="brand">
             <img
-              src={`/assets/alzaware-logo.jpeg?v=${assetVersion}`}
+              src={`/assets/alzaware-logo.jpg?v=${assetVersion}`}
               alt="AlzaWare logo"
               className="brand-logo"
             />

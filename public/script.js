@@ -112,7 +112,7 @@ function shell(content, activePath) {
       <nav class="nav container">
         <a href="/" data-spa-link class="brand-link" aria-label="AlzaWare Home">
           <div class="brand">
-            <img src="${withAssetVersion('/assets/alzaware-logo.jpg')}" alt="AlzaWare logo" class="brand-logo" />
+            <img src="${withAssetVersion('/assets/alzaware-logo.jpeg')}" alt="AlzaWare logo" class="brand-logo" />
           </div>
         </a>
         <div class="nav-links">
